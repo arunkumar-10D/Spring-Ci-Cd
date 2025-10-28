@@ -31,19 +31,13 @@ jobs:
       run: mvn -B clean package -DskipTests
     - name: Prepare JAR for Docker
       run: cp target/*.jar app.jar
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASS }}
-
-    - name: Build and push Docker image
+    - name: Build Docker image (no push)
       uses: docker/build-push-action@v5
       with:
         context: .
         file: ./Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/springboot-cicd-workflow:latest
+        push: false
+        tags: arunkumar10decoder/springboot-cicd-workflow:latest
     - name: Run Docker Compose
       run: docker compose up -d
       if: always()
