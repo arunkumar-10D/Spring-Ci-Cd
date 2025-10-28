@@ -44,6 +44,8 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/springboot-cicd-workflow:latest
+    - name: Wait for MySQL
+      run: sleep 20
     - name: Run Docker Compose
       run: docker compose up -d
       if: always()
