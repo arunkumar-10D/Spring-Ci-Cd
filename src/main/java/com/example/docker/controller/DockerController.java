@@ -14,7 +14,7 @@ public class DockerController {
     @Autowired
     private UserRepo userRepo;
 
-    @GetMapping("/docker")
+    @GetMapping("/docker/test")
     public String docker(){
         return "docker runnning";
     }
