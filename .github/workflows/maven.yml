@@ -38,5 +38,5 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASS }}
     - name: Run Docker Compose
-      run: docker-compose up -d
+      run: docker compose up -d
       if: always()
