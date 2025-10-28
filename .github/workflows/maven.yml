@@ -29,4 +29,14 @@ jobs:
         cache: maven
     - name: Build with Maven (Skip Tests)
       run: mvn -B clean package -DskipTests
-
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        tags: spring-ci-cd:latest
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASS }}
+    - name: Run Docker Compose
+      run: docker-compose up -d
+      if: always()
