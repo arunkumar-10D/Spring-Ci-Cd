@@ -14,8 +14,8 @@ services:
     restart: always
 
   mysql:
-    image: mysql:latest                  # Use official MySQL 8 image
-    container_name: mysql_container     # Name of the container                   # Automatically restart if it stops
+    image: mysql:latest
+    container_name: mysql_container                   # Automatically restart if it stops
     environment:
       MYSQL_ROOT_PASSWORD: user
       MYSQL_DATABASE: mydb
